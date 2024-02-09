@@ -34,6 +34,7 @@ window.onload = function () {
 
     ////// add the text
     // ctx.fillText('hi',canvasY,canvasX);
+    var size=document.getElementById('size').value;
     var type_ = document.getElementById("type").value;
     function type() {
       if (type_ == 1) {
@@ -48,7 +49,6 @@ window.onload = function () {
       case "1":
         circle();
         break;
-
       case "2":
         face();
         break;
@@ -57,12 +57,14 @@ window.onload = function () {
         break;
         case "4":Square();
         break;
+        case "5": Star(canvasX, canvasY, 5, size, size /2);
+        break;
       default:
         circle();
         break;
     }
     function circle() {
-      ctx.arc(canvasX, canvasY, 30, 0, 2 * Math.PI, false);
+      ctx.arc(canvasX, canvasY, size, 0, 2 * Math.PI, false);
       type();
     }
 
@@ -75,17 +77,19 @@ window.onload = function () {
         ctx.beginPath();
         ctx2.fillStyle = type_ == 1 ? "white" : "black";
         //   ctx.moveTo(canvasX, canvasY + 16);
-        ctx2.arc(canvasX, canvasY + 10, 10, 0, 3.14, false);
+        ctx2.arc(canvasX, canvasY + 10,size / 3, 0, 3.14, false);
         type_ == 1 ? ctx2.fill() : ctx.stroke();
         ctx.closePath();
       }
       t();
       ctx.fillStyle = type_ == 1 ? "white" : "black";
       ctx.beginPath();
-      ctx.moveTo(canvasX + 15, canvasY - 10);
-      ctx.arc(canvasX + 15, canvasY - 10, 5, 0, 2 * Math.PI, false);
-      ctx.moveTo(canvasX - 15, canvasY - 10);
-      ctx.arc(canvasX - 15, canvasY - 10, 5, 0, 2 * Math.PI, false);
+    //   ctx.moveTo(canvasX + 15, canvasY - 10);
+      ctx.arc(canvasX + 15, canvasY - 10, size /5, 0, 2 * Math.PI, false);
+      type();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(canvasX - 15, canvasY - 10, size/5, 0, 2 * Math.PI, false);
       type();
       ctx.closePath();
     }
@@ -104,32 +108,38 @@ window.onload = function () {
         type();
         ctx.closePath();
     }
+//////////// create the star 
+    function Star(cx, cy, spikes, outerRadius, innerRadius) {
+        var rot = Math.PI / 2 * 3;
+        var x = cx;
+        var y = cy;
+        var step = Math.PI / spikes;
+    
+        ctx.strokeSyle = "#000";
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - outerRadius)
+        for (i = 0; i < spikes; i++) {
+            x = cx + Math.cos(rot) * outerRadius;
+            y = cy + Math.sin(rot) * outerRadius;
+            ctx.lineTo(x, y)
+            rot += step
+    
+            x = cx + Math.cos(rot) * innerRadius;
+            y = cy + Math.sin(rot) * innerRadius;
+            ctx.lineTo(x, y)
+            rot += step
+        }
+        ctx.lineTo(cx, cy - outerRadius)
+        ctx.closePath();
+        // ctx.lineWidth=5;
+        // ctx.stroke();
+        // // ctx.fillStyle='skyblue';
+        // ctx.fill();
+        type();
+    
+    }
+    
 
-    ////circle
-    // ctx.arc(canvasX,canvasY,30,0,2*Math.PI,false);
-    // ctx.stroke();
-    ///or
-    // ctx.fill();
-
-    /// add auther circle but just the middle
-    // ctx.moveTo(canvasX+15 ,canvasY-10)
-    // ctx.arc(canvasX +15,canvasY-10,5,0,2*Math.PI,false);
-    // ctx.moveTo(canvasX-15 ,canvasY-10)
-    // ctx.arc(canvasX -15,canvasY-10,5,0,2*Math.PI,false);
-    // ctx.moveTo(canvasX ,canvasY+16)
-
-    // ctx.stroke();
-
-    ///// lines
-    ////// the triangle
-    // ctx.moveTo(canvasX,canvasY)
-    // ctx.lineTo(canvasX+70 , canvasY-90 )
-    // ctx.lineTo(canvasX +140 , canvasY )
-    // ctx.lineTo(canvasX +50 , canvasY )
-
-    //////
-
-    // ctx.fill();
 
     download_img = function (el) {
       var image = canve1.toDataURL("image/jpg");

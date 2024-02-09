@@ -16,6 +16,25 @@
         padding: 0;
         margin: 0;
       }
+
+      .nav-config{
+        background-color: azure;
+        border: 0;
+        box-shadow: 2px 2px 4px gray ;
+        border-radius: 4px;
+        margin: 20px;
+        height: 30px;
+        width: auto;
+        min-width: 200px;
+      }
+      #myCanvas{
+        border: 2px solid;
+        border-radius: 4px;
+        box-shadow: 2px 2px 4px gray;
+        margin-left: 20px;
+        margin-bottom: 30px;
+      }
+
     </style>
     <script src="script.js"> </script>
   </head>
@@ -23,24 +42,27 @@
     <div>
 
 
-    <select style="background-color: antiquewhite; height: 40px; width: 150px; margin: 20px;" name="objcts" id="objcts">
+    <select class="nav-config" name="objcts" id="objcts">
       <option value="">Select a objects</option>
       <option value="1">circle</option>
       <option value="2">face</option>
       <option value="3">Triangle</option>
       <option value="4">Square</option>
+      <option value="5">star</option>
     </select>
-    <select style="background-color: antiquewhite; height: 40px; width: 150px; margin: 20px;" name="type" id="type">
+    <select class="nav-config" name="type" id="type">
         <option value="">Select a Type</option>
         <option value="1">Fill</option>
         <option value="2">Stroke</option>
       </select>
+      <input style="text-align: center;" type="number" class="nav-config" name="size" id="size" value=50>
+        
 </div>
 <div>
     <canvas id="myCanvas"  height="600" width="900"></canvas>
 </div>
 <div>
-    <canvas id="canvas" style="border: solid 2px blue; width: 100%;" width="800" height="600"> </canvas>
+    <canvas id="canvas" style="border: solid 2px rgb(64, 64, 255); width: 100%;" width="800" height="600"> </canvas>
     <button onclick="rotate_ctx1()">rotat</button>
     <button>
       <a
