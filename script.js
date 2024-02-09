@@ -1,21 +1,21 @@
-var draw = document.querySelector('input[name="type_draw"]:checked').value;
-function check(e) {
-  console.log(e);
-  draw = e.value;
-  console.log(draw);
-}
-var canve1 = document.getElementById("myCanvas");
-
+// var draw = document.querySelector('input[name="type_draw"]:checked').value;
+// function check(e) {
+//   console.log(e);
+//   draw = e.value;
+//   console.log(draw);
+// }
+var canve1 = document.querySelector("#myCanvas");
+var ctx;
 // var event_ = draw === "drop" ? "click" : "mousemove";
 canve1.addEventListener("click", function (e) {
-  console.log(draw);
+ 
   var objcts = document.getElementById("objcts").value;
   var cRect = canve1.getBoundingClientRect(); // Gets CSS pos, and width/height
 
   var canvasX = Math.round(e.clientX - cRect.left); // Subtract the 'left' of the canvas
   var canvasY = Math.round(e.clientY - cRect.top);
 
-  var ctx = canve1.getContext("2d");
+   ctx = canve1.getContext("2d");
   //// the bg color the variable color is for indique the color spicified for the oject drawing
   var color = document.getElementById("color").value;
   ctx.fillStyle = color;
@@ -84,18 +84,20 @@ canve1.addEventListener("click", function (e) {
     ctx.beginPath();
     ctx2.fillStyle = type_ == 1 ? "white" : color;
     //   ctx.moveTo(canvasX, canvasY + 16);
-    ctx2.arc(canvasX, canvasY + 10, size / 3, 0, 3.14, false);
+    ///// add the semicircle 
+    ctx2.arc(canvasX, canvasY + size *0.3, size / 3, 0, 3.14, false);
     type_ == 1 ? ctx2.fill() : ctx.stroke();
     ctx.closePath();
 
     ctx.fillStyle = type_ == 1 ? "white" : color;
     ctx.beginPath();
+
     //   ctx.moveTo(canvasX + 15, canvasY - 10);
-    ctx.arc(canvasX + 15, canvasY - 10, size / 5, 0, 2 * Math.PI, false);
+    ctx.arc(canvasX + size *0.4, canvasY - size *0.3, size / 5, 0, 2 * Math.PI, false);
     type();
     ctx.closePath();
     ctx.beginPath();
-    ctx.arc(canvasX - 15, canvasY - 10, size / 5, 0, 2 * Math.PI, false);
+    ctx.arc(canvasX -  size *0.4 , canvasY - size *0.3, size / 5, 0, 2 * Math.PI, false);
     type();
     ctx.closePath();
   }
@@ -152,6 +154,6 @@ download_img = function (el) {
 };
 //// function for Clear the canvas
 function clear_Canves() {
-  console.log("gg");
-  ctx.clearRect(0, 0, canve1.width, canve1.height);
-}
+    ctx.clearRect(0, 0, canve1.width, canve1.height);
+  }
+  
