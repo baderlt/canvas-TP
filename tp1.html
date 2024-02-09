@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: white;
+      }
+      #myCanvas {
+        border: 1px solid red;
+      }
+      #canvasJavascript {
+        border: 1px solid blue;
+      }
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <script src="script.js"> </script>
+  </head>
+  <body >
+    <!-- add a canvas element using html -->
+    <div>
+
+
+    <select style="background-color: antiquewhite; height: 40px; width: 150px; margin: 20px;" name="objcts" id="objcts">
+      <option value="">Select a objects</option>
+      <option value="1">circle</option>
+      <option value="2">face</option>
+      <option value="3">Triangle</option>
+    </select>
+    <select style="background-color: antiquewhite; height: 40px; width: 150px; margin: 20px;" name="type" id="type">
+        <option value="">Select a Type</option>
+        <option value="1">Fill</option>
+        <option value="2">Stroke</option>
+      </select>
+</div>
+<div>
+    <canvas id="myCanvas"  height="600" width="900"></canvas>
+</div>
+<div>
+    <canvas id="canvas" style="border: solid 2px blue; width: 100%;" width="800" height="600"> </canvas>
+    <button onclick="rotate_ctx1()">rotat</button>
+    <button>
+      <a
+        style="text-decoration: none; color: black"
+        id="download"
+        download="myImage.jpg"
+        href=""
+        onclick="download_img(this);"
+        >Download to image
+      </a>
+    </button>
+</div>
+  </body>
+</html>
