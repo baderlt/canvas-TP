@@ -7,7 +7,7 @@ function check(e) {
 var canve1 = document.getElementById("myCanvas");
 
 // var event_ = draw === "drop" ? "click" : "mousemove";
-canve1.addEventListener('click', function (e) {
+canve1.addEventListener("click", function (e) {
   console.log(draw);
   var objcts = document.getElementById("objcts").value;
   var cRect = canve1.getBoundingClientRect(); // Gets CSS pos, and width/height
@@ -16,7 +16,7 @@ canve1.addEventListener('click', function (e) {
   var canvasY = Math.round(e.clientY - cRect.top);
 
   var ctx = canve1.getContext("2d");
-  //// the bg color
+  //// the bg color the variable color is for indique the color spicified for the oject drawing
   var color = document.getElementById("color").value;
   ctx.fillStyle = color;
   ctx.strokeStyle = color;
@@ -28,6 +28,7 @@ canve1.addEventListener('click', function (e) {
   // ctx.fillText('hi',canvasY,canvasX);
   var size = document.getElementById("size").value;
   var type_ = document.getElementById("type").value;
+  //// this function for indique the type of drawing  fill or stroke
   function type() {
     if (type_ == 1) {
       return ctx.fill();
@@ -35,8 +36,9 @@ canve1.addEventListener('click', function (e) {
       return ctx.stroke();
     }
   }
+  /// strat the derwing
   ctx.beginPath();
-
+  //////////////  switch case for swith of the oject for drawing
   switch (objcts) {
     case "1":
       circle();
@@ -48,7 +50,7 @@ canve1.addEventListener('click', function (e) {
       Triangle();
       break;
     case "4":
-      Square();
+      box();
       break;
     case "5":
       Star(canvasX, canvasY, 5, size, size / 2);
@@ -66,25 +68,26 @@ canve1.addEventListener('click', function (e) {
       circle();
       break;
   }
+
+  /// function for drawing the circle
   function circle() {
     ctx.arc(canvasX, canvasY, size, 0, 2 * Math.PI, false);
     type();
   }
-
+  ///// function for drawing oject like face
   function face() {
     circle();
     type();
     ctx.closePath();
-    function t() {
-      var ctx2 = ctx;
-      ctx.beginPath();
-      ctx2.fillStyle = type_ == 1 ? "white" : color;
-      //   ctx.moveTo(canvasX, canvasY + 16);
-      ctx2.arc(canvasX, canvasY + 10, size / 3, 0, 3.14, false);
-      type_ == 1 ? ctx2.fill() : ctx.stroke();
-      ctx.closePath();
-    }
-    t();
+
+    var ctx2 = ctx;
+    ctx.beginPath();
+    ctx2.fillStyle = type_ == 1 ? "white" : color;
+    //   ctx.moveTo(canvasX, canvasY + 16);
+    ctx2.arc(canvasX, canvasY + 10, size / 3, 0, 3.14, false);
+    type_ == 1 ? ctx2.fill() : ctx.stroke();
+    ctx.closePath();
+
     ctx.fillStyle = type_ == 1 ? "white" : color;
     ctx.beginPath();
     //   ctx.moveTo(canvasX + 15, canvasY - 10);
@@ -105,8 +108,8 @@ canve1.addEventListener('click', function (e) {
     ctx.lineTo(canvasX, canvasY);
     type();
   }
-
-  function Square() {
+  ////// create the box
+  function box() {
     ctx.rect(canvasX, canvasY, size, size);
     type();
     ctx.closePath();
@@ -140,15 +143,14 @@ canve1.addEventListener('click', function (e) {
     // ctx.fill();
     type();
   }
-
-  download_img = function (el) {
-    var image = canve1.toDataURL("image/jpg");
-    el.href = image;
-  };
-
-  return ctx;
 });
 
+/////// function for download the drawer canvas
+download_img = function (el) {
+  var image = canve1.toDataURL("image/jpg");
+  el.href = image;
+};
+//// function for Clear the canvas
 function clear_Canves() {
   console.log("gg");
   ctx.clearRect(0, 0, canve1.width, canve1.height);
