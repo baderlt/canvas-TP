@@ -27,7 +27,8 @@ window.onload = function () {
 
     var ctx = canve1.getContext("2d");
     //// the bg color
-    ctx.fillStyle = "red";
+    var color =document.getElementById('color').value;
+    ctx.fillStyle = color;
 
     //// the font size
     // ctx.font='7px serif';
@@ -75,14 +76,14 @@ window.onload = function () {
       function t() {
         var ctx2 = ctx;
         ctx.beginPath();
-        ctx2.fillStyle = type_ == 1 ? "white" : "black";
+        ctx2.fillStyle = type_ == 1 ? "white" : color;
         //   ctx.moveTo(canvasX, canvasY + 16);
         ctx2.arc(canvasX, canvasY + 10,size / 3, 0, 3.14, false);
         type_ == 1 ? ctx2.fill() : ctx.stroke();
         ctx.closePath();
       }
       t();
-      ctx.fillStyle = type_ == 1 ? "white" : "black";
+      ctx.fillStyle = type_ == 1 ? "white" : color;
       ctx.beginPath();
     //   ctx.moveTo(canvasX + 15, canvasY - 10);
       ctx.arc(canvasX + 15, canvasY - 10, size /5, 0, 2 * Math.PI, false);
