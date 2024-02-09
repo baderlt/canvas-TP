@@ -55,6 +55,8 @@ window.onload = function () {
       case "3":
         Triangle();
         break;
+        case "4":Square();
+        break;
       default:
         circle();
         break;
@@ -78,14 +80,13 @@ window.onload = function () {
         ctx.closePath();
       }
       t();
-
-      ctx.beginPath();
       ctx.fillStyle = type_ == 1 ? "white" : "black";
+      ctx.beginPath();
       ctx.moveTo(canvasX + 15, canvasY - 10);
       ctx.arc(canvasX + 15, canvasY - 10, 5, 0, 2 * Math.PI, false);
       ctx.moveTo(canvasX - 15, canvasY - 10);
       ctx.arc(canvasX - 15, canvasY - 10, 5, 0, 2 * Math.PI, false);
-      ctx.stroke();
+      type();
       ctx.closePath();
     }
 
@@ -96,6 +97,12 @@ window.onload = function () {
       ctx.lineTo(canvasX + 140, canvasY);
       ctx.lineTo(canvasX, canvasY);
       type();
+    }
+
+    function Square(){
+        ctx.rect(canvasX,canvasY,50,50)
+        type();
+        ctx.closePath();
     }
 
     ////circle
